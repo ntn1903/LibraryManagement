@@ -1,9 +1,14 @@
+using LibraryManagement.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+var connectionString = builder.Configuration.GetConnectionString("defaultConnection");
 
+builder.Services.AddDbContext<LibraryManagementDbContext>(_ => _.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
