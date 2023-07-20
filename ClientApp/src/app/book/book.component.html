@@ -1,1 +1,51 @@
-<h1>Books page</h1>
+<div class="container my-5">
+
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h1>Book</h1>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-primary" [routerLink]="['/book/add']">Add Book</button>
+        </div>
+    </div>
+    <table class="table" *ngIf="books && books.length > 0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Desc</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.author}}</td>
+                <td>{{book.quantity}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.description}}</td>
+                <td>
+                    <i class="fa-solid fa-pen" (click)="editBook(book)" style="cursor: pointer; padding:0 10px" data-bs-toggle="tooltip" title="Edit"></i>
+                    <i class="fa-solid fa-trash" (click)="deleteBook(book.id)" style="cursor: pointer; padding:0 10px" data-bs-toggle="tooltip" title="Delete"></i>
+                    <i class="fa-solid fa-magnifying-glass-plus" (click)="viewBook(book)" style="cursor: pointer; padding:0 10px" data-bs-toggle="tooltip" title="View"></i>
+                </td>
+                <!-- <app-add-book [bookSelected]="book" disable="true"></app-add-book> -->
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!books || books.length == 0">No Book Found</p>
+</div>
+
+<!-- <button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+
+<button type="button" class="btn btn-link">Link</button> -->

@@ -15,24 +15,33 @@ namespace LibraryManagement.Controllers
             _context = context;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetList() { 
-        //    var book = await _context.Books.ToListAsync();
-        //    return Ok(book);
-        //}
-
-        public IEnumerable<Book> Get()
+        [HttpGet]
+        public async Task<IActionResult> GetList()
         {
-            return Enumerable.Range(1, 5).Select(index => new Book
-            {
-                Id = Guid.NewGuid(),
-                Title = "Nguyen",
-                Author = "Trong",
-                Quantity = 1,
-                Price = 1,
-                Description = null,
-            })
-            .ToArray();
+            var books = await _context.Books.ToListAsync();
+            return Ok(books);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody]Book book)
+        {
+            book.Id = Guid.NewGuid();
+            await _context.Books.AddAsync(book);
+            await _context.SaveChangesAsync();
+
+            return Ok(book);
+        }
+
+        [HttpGet]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Get([FromRoute] Guid id)
+        {
+            var book = await _context.Books.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(book ==null)
+                return NotFound();
+
+            return Ok(book);
         }
     }
 }
