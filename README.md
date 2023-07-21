@@ -7,5 +7,5 @@ Require:
 How to start?
 - Move to ..LibraryManagement\ClientApp
 - Open cmd in here. Run: npm install --force
-- Open LibraryManagement.sln and run
+- Open LibraryManagement.sln and open Package manage console run: update-database
 
