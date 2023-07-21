@@ -1,0 +1,49 @@
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <span class="fa fa-user-o"></span>
+                    </div>
+                    <h3 class="text-center mb-4" *ngIf="isLogin">Sign In</h3>
+                    <h3 class="text-center mb-4" *ngIf="!isLogin">Register</h3>
+                    <div class="form-group" *ngIf="!isLogin">
+                        <input type="text" class="form-control rounded-left" placeholder="Full name" required [(ngModel)]="user.name">
+                    </div>
+                    <div class="form-group" *ngIf="!isLogin">
+                        <input type="text" class="form-control rounded-left" placeholder="Email" required [(ngModel)]="user.email">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control rounded-left" placeholder="Username" required [(ngModel)]="user.username">
+                    </div>
+                    <div class="form-group d-flex">
+                        <input type="password" class="form-control rounded-left" placeholder="Password" required [(ngModel)]="user.password">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control btn btn-primary" (click)="login()" *ngIf="isLogin">Login</button>
+                        <button type="submit" class="form-control btn btn-primary" (click)="register()" *ngIf="!isLogin">Register</button>
+                    </div>
+                    <!-- class="btn btn-secondary" -->
+                    <div class="form-group d-md-flex">
+                        <div class="w-50">
+                            <!-- <label class="checkbox-wrap checkbox-primary">Remember Me
+                                <input type="checkbox" checked>
+                                <span class="checkmark"></span>
+                            </label> -->
+                            <button type="submit" class="btn btn-link" (click)="changeType()" *ngIf="!isLogin">Login</button>
+                        </div>
+                        <div class="w-50 text-md-right" *ngIf="isLogin">
+                            <button type="submit" class="btn btn-link" (click)="changeType()" *ngIf="isLogin">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
