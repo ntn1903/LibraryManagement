@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -7,23 +9,29 @@ import { User } from '../models/user';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  isLogin: boolean = false;
   user: User = {
     id: '',
     name: '',
     email: '',
     username: '',
     password: '',
-    budget: 0
+    budget: 0,
+    role: ''
   }
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
-  register(){
-
+  register() {
+    this.userService.create(this.user).subscribe({
+      next: (r) => {
+        if (r) {
+          alert("Create account successful!")
+          this.router.navigate(['/']);
+        }
+      }
+    });
   }
 
 }

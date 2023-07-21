@@ -17,6 +17,7 @@ export class AddUserComponent implements OnInit {
     username: '',
     password: '',
     budget: 0,
+    role: ''
   }
   constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
 
@@ -36,11 +37,9 @@ export class AddUserComponent implements OnInit {
 
   addUser() {
     if (this.user.id)
-      // this.userService.update(this.user.id, this.user).subscribe({
-      //   next: (r) => { this.router.navigate(['/user']); }
-      // });
-      console.log()
-
+      this.userService.update(this.user.id, this.user).subscribe({
+        next: (r) => { this.router.navigate(['/user']); }
+      });
     else
       this.userService.create(this.user).subscribe({
         next: (r) => { this.router.navigate(['/user']); }

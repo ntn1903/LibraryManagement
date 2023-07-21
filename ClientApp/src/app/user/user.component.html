@@ -28,7 +28,7 @@
                 <td>{{user.budget}}</td>
                 <td>
                     <i class="button fa-solid fa-pen" [routerLink]="['/user/edit', user.id]" data-bs-toggle="tooltip" title="Edit"></i>
-                    <i class="button fa-solid fa-trash" (click)="deleteuser(user)" data-bs-toggle="tooltip" title="Delete"></i>
+                    <i class="button fa-solid fa-trash" (click)="deleteUser(user)" data-bs-toggle="tooltip" title="Delete"></i>
                     <i class="button fa-solid fa-magnifying-glass-plus" [routerLink]="['/user', user.id]" data-bs-toggle="tooltip" title="Detail"></i>
                 </td>
             </tr>

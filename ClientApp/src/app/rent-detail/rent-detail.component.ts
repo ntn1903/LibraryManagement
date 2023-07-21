@@ -23,6 +23,5 @@ export class RentDetailComponent implements OnInit {
     this.orderService.update(orderId).subscribe({
       next: (r) => { window.location.reload(); }
     })
-    console.log(orderId)
   }
 }

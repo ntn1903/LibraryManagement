@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Login } from '../models/login';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,17 @@ export class UserService {
 
   read(id: string): Observable<User> {
     return this.http.get<User>(`${environment.apiUrl}/${this.url}/` + id);
+  }
+
+  login(l: Login): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/${this.url}/login`, l);
+  }
+
+  update(id: string, user:User): Observable<User> {
+    return this.http.put<User>(`${environment.apiUrl}/${this.url}/` + id, user);
+  }
+
+  delete(id: string): Observable<User> {
+    return this.http.delete<User>(`${environment.apiUrl}/${this.url}/` + id);
   }
 }

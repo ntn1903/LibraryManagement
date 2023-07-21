@@ -1,5 +1,6 @@
 ﻿using LibraryManagement.Data;
 using LibraryManagement.Entities;
+using LibraryManagement.Modelssss;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,7 @@ namespace LibraryManagement.Controllers
         public async Task<IActionResult> Create([FromBody] User user)
         {
             user.Id = Guid.NewGuid();
+            user.Role = "admin";
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
 
@@ -44,6 +46,46 @@ namespace LibraryManagement.Controllers
                 return NotFound();
 
             return Ok(user);
+        }
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] UserLogin user)
+        {
+            var u = await _context.Users.Where(u => u.Username == user.Username.ToLower() && u.Password == user.Password).FirstOrDefaultAsync();
+            if (u != null) return Ok(u);
+            return Ok(false); ;
+        }
+
+        [HttpPut]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, User user)
+        {
+            var u = await _context.Users.FindAsync(id);
+            if (u == null)
+                return NotFound();
+            u.Name = user.Name;
+            u.Email = user.Email;
+            u.Username = user.Username;
+            u.Password = user.Password;
+            u.Role = user.Role;
+            u.Budget = user.Budget;
+
+            await _context.SaveChangesAsync();
+            return Ok(u);
+        }
+
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        {
+            var user = await _context.Users.FindAsync(id);
+            if (user == null)
+                return NotFound();
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return Ok();
         }
     }
 }

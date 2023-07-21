@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Book } from '../models/book';
 import { BookService } from '../services/book.service';
 import { OrderService } from '../services/order.service';

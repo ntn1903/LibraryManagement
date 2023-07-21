@@ -26,7 +26,6 @@ export class AddBookComponent implements OnInit {
     this.route.paramMap.subscribe({
       next: (p) => {
         const id = p.get('id');
-        console.log(p)
         if (id) {
           this.isEdit = true;
           this.bookService.read(id).subscribe({

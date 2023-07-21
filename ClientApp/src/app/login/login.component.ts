@@ -16,25 +16,30 @@ export class LoginComponent implements OnInit {
     email: '',
     username: '',
     password: '',
-    budget: 0
+    budget: 0,
+    role: ''
   }
-  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private userService: UserService) { sessionStorage.clear(); }
 
   ngOnInit(): void {
+
   }
 
   login() {
-
+    const userLogin = {
+      username: this.user.username,
+      password: this.user.password,
+    }
+    this.userService.login(userLogin).subscribe({
+      next: (result) => {
+        if (result) {
+          sessionStorage.setItem('id', result.id);
+          sessionStorage.setItem('username', result.username);
+          sessionStorage.setItem('role', result.role)
+          this.router.navigate(['/book-for-rent']);
+        }
+        else alert("Username or Password is incorrect!")
+      }
+    })
   }
-
-  register(){
-    this.userService.create(this.user).subscribe({
-      next: (r) => { this.router.navigate(['/book-for-rent']); }
-    });
-  }
-
-  changeType() {
-    this.isLogin = !this.isLogin;
-  }
-
 }

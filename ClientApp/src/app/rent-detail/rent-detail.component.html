@@ -30,9 +30,6 @@
                 <td>
                     <i class="button fa-solid fa-minus" data-bs-toggle="tooltip" title="Return"
                         (click)="minusFromCart(order.id)" *ngIf="order.isReturn!=true"></i>
-                    <!--[routerLink]="['/order', order.id]"-->
-                    <!-- <i class="button fa-solid fa-trash" (click)="deleteorder(order.id)" data-bs-toggle="tooltip" title="Delete"></i>
-                    <i class="button fa-solid fa-magnifying-glass-plus" [routerLink]="['/order', order.id]" data-bs-toggle="tooltip" title="Detail"></i> -->
                 </td>
             </tr>
         </tbody>
@@ -40,12 +37,4 @@
     <p *ngIf="!orders || orders.length == 0">No Order Found</p>
 </div>
 
-<!-- <button type="button" class="btn btn-secondary">Secondary</button>
-<button type="button" class="btn btn-success">Success</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-info">Info</button>
-<button type="button" class="btn btn-light">Light</button>
-<button type="button" class="btn btn-dark">Dark</button>
-
-<button type="button" class="btn btn-link">Link</button> -->
+<button type="button" class="btn btn-secondary" [routerLink]="['/book-for-rent']">Back</button>

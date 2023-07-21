@@ -22,8 +22,10 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  deleteuser(u: User) {
-
+  deleteUser(u: User) {
+    var answer = window.confirm("Do you want to delete?");
+    if (answer)
+      this.userService.delete(u.id).subscribe({ next: (r) => { this.router.navigate(['/user']); } })
   }
 
 }
