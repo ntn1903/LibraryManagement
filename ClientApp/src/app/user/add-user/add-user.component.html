@@ -1,0 +1,35 @@
+<form #form="ngForm">
+    <div class="mb-3" *ngIf="isEdit">
+        <label for="id" class="form-label">User Id</label>
+        <input type="text" class="form-control" id="id" name="id" [(ngModel)]="user.id" [disabled]="true">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Full name</label>
+        <input type="text" class="form-control" id="name" name="name" [(ngModel)]="user.name">
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="email" name="email" [(ngModel)]="user.email">
+    </div>
+
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username">
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password">
+    </div>
+
+    <div class="mb-3">
+        <label for="budget" class="form-label">Budget</label>
+        <input type="text" class="form-control" id="budget" name="budget" [(ngModel)]="user.budget">
+    </div>
+    
+    <button type="submit" class="btn btn-primary" *ngIf="isEdit" (click)="addUser()">Update</button>
+    <button type="submit" class="btn btn-primary" *ngIf="!isEdit" (click)="addUser()">Create</button>
+
+    <button type="submit" class="btn btn-secondary" (click)="back()">Back</button>
+</form>

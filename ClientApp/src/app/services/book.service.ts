@@ -25,4 +25,12 @@ export class BookService {
   read(id: string): Observable<Book> {
     return this.http.get<Book>(`${environment.apiUrl}/${this.url}/` + id);
   }
+
+  update(id: string, book:Book): Observable<Book> {
+    return this.http.put<Book>(`${environment.apiUrl}/${this.url}/` + id, book);
+  }
+
+  delete(id: string): Observable<Book> {
+    return this.http.delete<Book>(`${environment.apiUrl}/${this.url}/` + id);
+  }
 }

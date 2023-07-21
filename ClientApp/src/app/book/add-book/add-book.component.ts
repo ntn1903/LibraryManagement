@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book.service';
 
@@ -8,7 +9,6 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
-  @Input() bookSelected: Book | undefined;
 
   book: Book = {
     id: '',
@@ -19,14 +19,37 @@ export class AddBookComponent implements OnInit {
     description: ''
   }
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private route: ActivatedRoute, private router: Router,) { }
 
+  isEdit: boolean = false;
   ngOnInit(): void {
-    console.log(this.bookSelected)
+    this.route.paramMap.subscribe({
+      next: (p) => {
+        const id = p.get('id');
+        console.log(p)
+        if (id) {
+          this.isEdit = true;
+          this.bookService.read(id).subscribe({
+            next: (r) => { this.book = r; }
+          })
+        }
+      }
+    })
   }
 
-  addBook(){
-    this.bookService.create(this.book).subscribe(_=> console.log(_))
+  addBook() {
+    if (this.book.id)
+      this.bookService.update(this.book.id, this.book).subscribe({
+        next: (r) => { this.router.navigate(['/book']); }
+      });
+    else
+      this.bookService.create(this.book).subscribe({
+        next: (r) => { this.router.navigate(['/book']); }
+      });
+  }
+
+  back() {
+    this.router.navigate(['/book']);
   }
 
 }

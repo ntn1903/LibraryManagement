@@ -1,0 +1,48 @@
+<div class="container my-5">
+
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h1>User management</h1>
+        </div>
+        <div class="col-4">
+            <button type="button" class="btn btn-primary" [routerLink]="['/user/add']">Add User</button>
+        </div>
+    </div>
+    <table class='table table-striped' *ngIf="users && users.length > 0">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>Username</th>
+                <th>Full name</th>
+                <th>Email</th>
+                <th>Budget</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.budget}}</td>
+                <td>
+                    <i class="button fa-solid fa-pen" [routerLink]="['/user/edit', user.id]" data-bs-toggle="tooltip" title="Edit"></i>
+                    <i class="button fa-solid fa-trash" (click)="deleteuser(user)" data-bs-toggle="tooltip" title="Delete"></i>
+                    <i class="button fa-solid fa-magnifying-glass-plus" [routerLink]="['/user', user.id]" data-bs-toggle="tooltip" title="Detail"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!users || users.length == 0">No user Found</p>
+</div>
+
+<!-- <button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+
+<button type="button" class="btn btn-link">Link</button> -->

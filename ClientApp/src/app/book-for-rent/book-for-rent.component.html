@@ -2,15 +2,20 @@
 
     <div class="row justify-content-between">
         <div class="col-4">
-            <h1>Book management</h1>
+            <h1>Book for rent</h1>
         </div>
         <div class="col-4">
-            <button type="button" class="btn btn-primary" [routerLink]="['/book/add']">Add Book</button>
+            <button type="button" class="btn btn-primary position-relative" [routerLink]="['/detail']"> Rent Detail
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{bookTotals}}</span><!-- "-->
+            </button>
         </div>
+
+
     </div>
     <table class='table table-striped' *ngIf="books && books.length > 0">
         <thead>
             <tr>
+                <th>No.</th>
                 <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
@@ -21,7 +26,8 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let book of books">
+            <tr *ngFor="let book of books; let i = index">
+                <td>{{i + 1}}</td>
                 <td>{{book.id}}</td>
                 <td>{{book.title}}</td>
                 <td>{{book.author}}</td>
@@ -29,9 +35,10 @@
                 <td>{{book.price}}</td>
                 <td>{{book.description}}</td>
                 <td>
-                    <i class="button fa-solid fa-pen" [routerLink]="['/book/edit', book.id]" data-bs-toggle="tooltip" title="Edit"></i>
-                    <i class="button fa-solid fa-trash" (click)="deleteBook(book.id)" data-bs-toggle="tooltip" title="Delete"></i>
-                    <i class="button fa-solid fa-magnifying-glass-plus" [routerLink]="['/book', book.id]" data-bs-toggle="tooltip" title="Detail"></i>
+                    <a><i class="button fa-solid fa-cart-plus" data-bs-toggle="tooltip" title="Rent" (click)="addToCart(book)" *ngIf="book.quantity > 0"></i></a>
+                    <!--[routerLink]="['/book', book.id]"-->
+                    <!-- <i class="button fa-solid fa-trash" (click)="deleteBook(book.id)" data-bs-toggle="tooltip" title="Delete"></i>
+                    <i class="button fa-solid fa-magnifying-glass-plus" [routerLink]="['/book', book.id]" data-bs-toggle="tooltip" title="Detail"></i> -->
                 </td>
             </tr>
         </tbody>
@@ -46,4 +53,5 @@
 <button type="button" class="btn btn-info">Info</button>
 <button type="button" class="btn btn-light">Light</button>
 <button type="button" class="btn btn-dark">Dark</button>
+
 <button type="button" class="btn btn-link">Link</button> -->

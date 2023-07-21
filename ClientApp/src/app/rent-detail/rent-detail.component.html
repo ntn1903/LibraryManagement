@@ -1,0 +1,51 @@
+<div class="container my-5">
+
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <h1>Details</h1>
+        </div>
+    </div>
+    <table class="table table-striped" *ngIf="orders && orders.length > 0">
+        <thead>
+            <tr>
+                <!-- <th>No.</th> -->
+                <th>Order Id</th>
+                <th>Book Id</th>
+                <th>Title</th>
+                <th>Date of rent</th>
+                <th>Date of return</th>
+                <th>Is Return</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders; let i = index">
+                <!-- <td>{{i + 1}}</td> -->
+                <td>{{order.id}}</td>
+                <td>{{order.bookId}}</td>
+                <td>{{order.title}}</td>
+                <td>{{order.dateOfRent | date:'YYYY-MM-dd'}}</td>
+                <td>{{order.dateOfReturn | date:'YYYY-MM-dd'}}</td>
+                <td>{{order.isReturn}}</td>
+                <td>
+                    <i class="button fa-solid fa-minus" data-bs-toggle="tooltip" title="Return"
+                        (click)="minusFromCart(order.id)" *ngIf="order.isReturn!=true"></i>
+                    <!--[routerLink]="['/order', order.id]"-->
+                    <!-- <i class="button fa-solid fa-trash" (click)="deleteorder(order.id)" data-bs-toggle="tooltip" title="Delete"></i>
+                    <i class="button fa-solid fa-magnifying-glass-plus" [routerLink]="['/order', order.id]" data-bs-toggle="tooltip" title="Detail"></i> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p *ngIf="!orders || orders.length == 0">No Order Found</p>
+</div>
+
+<!-- <button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+
+<button type="button" class="btn btn-link">Link</button> -->

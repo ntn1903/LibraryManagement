@@ -3,6 +3,7 @@ using System;
 using LibraryManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LibraryManagement.Migrations
 {
     [DbContext(typeof(LibraryManagementDbContext))]
-    partial class LibraryManagementDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230721042636_Add-Table")]
+    partial class AddTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,14 +60,11 @@ namespace LibraryManagement.Migrations
                     b.Property<DateTime>("DateOfRent")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime?>("DateOfReturn")
+                    b.Property<DateTime>("DateOfReturn")
                         .HasColumnType("datetime(6)");
 
                     b.Property<bool>("IsReturn")
                         .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("longtext");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");

@@ -16,13 +16,25 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { AddBookComponent } from './book/add-book/add-book.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BookForRentComponent } from './book-for-rent/book-for-rent.component';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { RentDetailComponent } from './rent-detail/rent-detail.component';
+import { UserComponent } from './user/user.component';
+import { AddUserComponent } from './user/add-user/add-user.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'counter', component: CounterComponent },
-  { path: 'fetch-data', component: FetchDataComponent },
+  { path: '', component: BookForRentComponent, pathMatch: 'full' },
+  // { path: 'counter', component: CounterComponent },
+  // { path: 'fetch-data', component: FetchDataComponent },
   { path: 'book', component: BookComponent },
   { path: 'book/add', component: AddBookComponent },
+  { path: 'book/edit/:id', component: AddBookComponent },
+  { path: 'book-for-rent', component: BookForRentComponent },
+  { path: 'my-profile', component: MyProfileComponent },
+  { path: 'detail', component: RentDetailComponent },
+  { path: 'user', component: UserComponent },
+  { path: 'user/add', component: AddUserComponent },
+  { path: 'user/edit/:id', component: AddUserComponent },
 ];
 
 @NgModule({
@@ -34,6 +46,11 @@ const routes: Routes = [
     FetchDataComponent,
     BookComponent,
     AddBookComponent,
+    BookForRentComponent,
+    MyProfileComponent,
+    RentDetailComponent,
+    UserComponent,
+    AddUserComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
