@@ -16,7 +16,6 @@
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Quantity</th>
@@ -28,7 +27,6 @@
         <tbody>
             <tr *ngFor="let book of books; let i = index">
                 <td>{{i + 1}}</td>
-                <td>{{book.id}}</td>
                 <td>{{book.title}}</td>
                 <td>{{book.author}}</td>
                 <td>{{book.quantity}}</td>

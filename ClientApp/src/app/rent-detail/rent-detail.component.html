@@ -10,7 +10,6 @@
             <tr>
                 <!-- <th>No.</th> -->
                 <th>Order Id</th>
-                <th>Book Id</th>
                 <th>Title</th>
                 <th>Date of rent</th>
                 <th>Date of return</th>
@@ -22,7 +21,6 @@
             <tr *ngFor="let order of orders; let i = index">
                 <!-- <td>{{i + 1}}</td> -->
                 <td>{{order.id}}</td>
-                <td>{{order.bookId}}</td>
                 <td>{{order.title}}</td>
                 <td>{{order.dateOfRent | date:'YYYY-MM-dd'}}</td>
                 <td>{{order.dateOfReturn | date:'YYYY-MM-dd'}}</td>
